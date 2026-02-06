@@ -33,7 +33,7 @@ src/
 └── styles/             # Globale Styles
 ```
 
-## 🛠️ Installation
+##  Installation
 
 ### Voraussetzungen
 
