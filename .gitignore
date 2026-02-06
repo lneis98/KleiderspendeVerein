@@ -28,6 +28,7 @@ lerna-debug.log*
 build/
 .cache/
 .parcel-cache/
+.vite/
 
 # Environment variables
 .env
