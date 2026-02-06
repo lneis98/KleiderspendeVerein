@@ -2,19 +2,20 @@
 
 Eine moderne, barrierefreie Webanwendung für Kleiderspenden, gebaut mit **Vue 3**, **Vite**, **Pinia** und **Tailwind CSS**.
 
-## 🚀 Features
+## Technische Features
 
-- ✅ **Vue 3 Composition API** - Moderne, typsichere Entwicklung
-- ✅ **Pinia State Management** - Zentralisiertes State Management
-- ✅ **Vue Router** - Client-side Routing mit Transitions
-- ✅ **Tailwind CSS** - Utility-first CSS Framework
-- ✅ **Vite** - Blitzschnelles Build-Tool
-- ✅ **WCAG 2.1 konform** - Vollständig barrierefrei
-- ✅ **Responsive Design** - Mobile-first Ansatz
-- ✅ **Code Splitting** - Optimierte Performance
-- ✅ **Clean Architecture** - Saubere Code-Struktur
+-  **Vue 3 Composition API** - Moderne, typsichere Entwicklung
+-  **Pinia State Management** - Zentralisiertes State Management
+-  **Vue Router** - Client-side Routing mit Transitions
+- **Tailwind CSS** - Utility-first CSS Framework
+-  **Vite** - Blitzschnelles Build-Tool
+-  **WCAG 2.1 konform** - Vollständig barrierefrei
 
-## 📁 Projektstruktur
+- **Code Splitting** - Optimierte Performance
+-  **Clean Architecture** - Saubere Code-Struktur
+-  **Responsive Design** -User-friendly in verschiedenen Formaten
+
+##  Projektstruktur
 
 ```
 src/
@@ -55,14 +56,14 @@ npm run build
 npm run preview
 ```
 
-## 📦 Verfügbare Scripts
+##  Verfügbare Scripts
 
 - `npm run dev` - Startet den Entwicklungsserver auf Port 3000
 - `npm run build` - Erstellt einen optimierten Production Build
 - `npm run preview` - Preview des Production Builds
 - `npm run lint` - Führt ESLint aus
 
-## 🏗️ Architektur
+##  Architektur
 
 ### State Management (Pinia)
 
@@ -79,7 +80,7 @@ npm run preview
 - **useFormValidation** - Formular-Validierung Logic
 - **useDonationForm** - Spenden-Formular Logic
 
-## 🎨 Design System
+## Design System
 
 ### Farben
 
@@ -95,7 +96,7 @@ npm run preview
 - **LoadingOverlay** - Loading Indikator
 - **AppNotification** - Toast Notifications
 
-## 🔒 Barrierefreiheit
+## Barrierefreiheit
 
 - ARIA Labels auf allen interaktiven Elementen
 - Keyboard Navigation Support
@@ -104,14 +105,14 @@ npm run preview
 - Focus States
 - Screen Reader optimiert
 
-## 📱 Responsive Breakpoints
+##  Responsive Breakpoints
 
 - **sm**: 640px
 - **md**: 768px
 - **lg**: 1024px
 - **xl**: 1280px
 
-## 🚀 Performance Optimierungen
+##  Performance Optimierungen
 
 - Code Splitting per Route
 - Lazy Loading von Komponenten
@@ -119,7 +120,7 @@ npm run preview
 - Asset Optimization
 - Tree Shaking
 
-## 🔧 Konfiguration
+##  Konfiguration
 
 ### Vite Config
 
@@ -129,16 +130,16 @@ Siehe `vite.config.js` für Build-Konfiguration.
 
 Siehe `tailwind.config.js` für Design System Anpassungen.
 
-## 📄 Lizenz
+##  Lizenz
 
 MIT License - Siehe LICENSE Datei
 
-## 👥 Kontakt
+## Kontakt
+Leonie Neis
+E-Mail: leonie.neis@iu-study.org 
+Matrikelnummer: IU14076896
 
-Kleiderspende Birkenau  
-E-Mail: info@kleiderspende-birkenau.de  
-Web: https://kleiderspende-birkenau.de
 
 ---
 
-**Erstellt mit ❤️ und Vue 3**
+
