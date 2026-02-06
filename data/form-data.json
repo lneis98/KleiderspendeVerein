@@ -1,0 +1,88 @@
+{
+    "deliveryTypes": [
+        {
+            "value": "pickup",
+            "label": "Abholung durch Sammelfahrzeug"
+        },
+        {
+            "value": "dropoff",
+            "label": "Übergabe an Geschäftsstelle"
+        }
+    ],
+    "clothingTypes": [
+        {
+            "value": "jackets",
+            "label": "Jacken & Mäntel"
+        },
+        {
+            "value": "pants",
+            "label": "Hosen"
+        },
+        {
+            "value": "shirts",
+            "label": "Hemden & Blusen"
+        },
+        {
+            "value": "sweaters",
+            "label": "Pullover & Sweatshirts"
+        },
+        {
+            "value": "shoes",
+            "label": "Schuhe"
+        },
+        {
+            "value": "accessories",
+            "label": "Accessoires"
+        }
+    ],
+    "crisisAreas": [
+        {
+            "value": "ukraine",
+            "label": "Ukraine"
+        },
+        {
+            "value": "syria",
+            "label": "Syrien"
+        },
+        {
+            "value": "yemen",
+            "label": "Jemen"
+        },
+        {
+            "value": "local",
+            "label": "Lokale Bedürftige"
+        }
+    ],
+    "openingHours": [
+        {
+            "day": "Montag",
+            "hours": "14:00 - 17:00 Uhr"
+        },
+        {
+            "day": "Mittwoch",
+            "hours": "09:00 - 12:00 Uhr"
+        },
+        {
+            "day": "Freitag",
+            "hours": "14:00 - 17:00 Uhr"
+        }
+    ],
+    "validationRules": {
+        "plz": {
+            "pattern": "^[0-9]{5}$",
+            "allowedPrefix": "69",
+            "errorMessage": "Die PLZ muss mit 69 beginnen und 5 Ziffern enthalten"
+        },
+        "address": {
+            "pattern": "^[A-Za-zäöüÄÖÜß\\s\\.-]+\\s+\\d+\\s*[a-zA-Z]?$",
+            "errorMessage": "Bitte geben Sie eine gültige Straße mit Hausnummer ein"
+        }
+    },
+    "contactInfo": {
+        "organization": "Kleiderspende Birkenau",
+        "street": "Hauptstraße 123",
+        "city": "69488 Birkenau",
+        "phone": "06201 12345",
+        "email": "info@kleiderspende-birkenau.de"
+    }
+}
