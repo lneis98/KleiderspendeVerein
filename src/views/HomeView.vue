@@ -267,14 +267,14 @@ const router = useRouter()
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1fr;
+  gap: 2rem;
   align-items: center;
-  padding: 4rem;
+  padding: 2rem 1.25rem;
 }
 
 .hero-content {
-  max-width: 600px;
+  max-width: 100%;
 }
 
 .hero-title {
@@ -306,18 +306,20 @@ const router = useRouter()
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .hero-image-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 0.5rem;
+  order: -1;
 }
 
 .hero-image {
   max-width: 100%;
-  width: 400px;
+  width: 180px;
   height: auto;
   filter: drop-shadow(0 10px 30px rgba(139, 92, 246, 0.15));
 }
@@ -350,7 +352,7 @@ const router = useRouter()
 /* Options Grid */
 .options-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: 2rem;
   margin-top: 3rem;
 }
@@ -403,7 +405,7 @@ const router = useRouter()
 /* Crisis Grid */
 .crisis-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: 2rem;
   margin-top: 3rem;
 }
@@ -490,7 +492,7 @@ const router = useRouter()
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: 1fr;
   gap: 2rem;
   margin-top: 2.5rem;
   position: relative;
@@ -500,52 +502,61 @@ const router = useRouter()
 .stat-item {
   text-align: center;
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
+    grid-template-columns: 1fr;
   border-radius: 0.75rem;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   transition: all 0.3s ease;
-}
-
-.stat-item:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.25);
-}
-
-.stat-number {
-  display: block;
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-}
-
-.stat-label {
-  display: block;
-  font-size: 1rem;
-  opacity: 0.9;
-}
-
-/* Why Grid */
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2.5rem;
-}
-
-.why-item {
-  background: white;
-  border-radius: 1rem;
-  padding: 2rem;
+  @media (min-width: 481px) {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+      padding: 2.5rem 1.5rem;
   border: 1px solid #e5e7eb;
 }
 
-.why-item:hover {
+      width: 220px;
   transform: translateY(-4px);
   box-shadow: 0 12px 24px rgba(139, 92, 246, 0.15);
+
+  @media (min-width: 769px) {
+    .hero-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      padding: 4rem;
+    }
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    .cta-buttons {
+      flex-direction: row;
+    }
+
+    .hero-image-wrapper {
+      padding: 2rem;
+      order: 0;
+    }
+
+    .hero-image {
+      width: 400px;
+    }
+
+    .options-grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .crisis-grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .why-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+  }
   border-color: #c7d2fe;
 }
 
