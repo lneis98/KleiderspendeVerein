@@ -81,6 +81,14 @@ export const CONFIG = {
       hours: 'Mo-Fr: 10:00-18:00'
     }
   ],
+
+  // Business Location (for pickup proximity validation)
+  BUSINESS_LOCATION: {
+    name: 'Hauptstelle Birkenau',
+    address: 'Hauptstraße 123, 69488 Birkenau',
+    plz: '69488',
+    plzPrefix: '69'
+  },
   
   // Donation Status
   DONATION_STATUSES: {

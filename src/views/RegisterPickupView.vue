@@ -241,22 +241,70 @@
               </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6">
-              <BaseInput
-                v-model="formData.pickupDate"
-                label="Wunschtermin"
-                type="date"
-                required
-                :error="errors.pickupDate"
-                @blur="validateField('pickupDate')"
-              />
-              <div class="form-group">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="w-full">
+                <label class="form-label block text-sm font-semibold text-gray-700 mb-3">
+                  Wunschtermin <span class="text-red-500">*</span>
+                </label>
+                <div class="grid grid-cols-3 gap-2">
+                  <!-- Tag -->
+                  <div>
+                    <select
+                      v-model="formData.pickupDateDay"
+                      @change="updatePickupDate"
+                      class="w-full px-2 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white text-gray-900 text-sm"
+                    >
+                      <option value="">Tag</option>
+                      <option v-for="day in 31" :key="day" :value="String(day).padStart(2, '0')">
+                        {{ String(day).padStart(2, '0') }}
+                      </option>
+                    </select>
+                  </div>
+                  <!-- Monat -->
+                  <div>
+                    <select
+                      v-model="formData.pickupDateMonth"
+                      @change="updatePickupDate"
+                      class="w-full px-2 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white text-gray-900 text-sm"
+                    >
+                      <option value="">Monat</option>
+                      <option value="01">Januar</option>
+                      <option value="02">Februar</option>
+                      <option value="03">März</option>
+                      <option value="04">April</option>
+                      <option value="05">Mai</option>
+                      <option value="06">Juni</option>
+                      <option value="07">Juli</option>
+                      <option value="08">August</option>
+                      <option value="09">September</option>
+                      <option value="10">Oktober</option>
+                      <option value="11">November</option>
+                      <option value="12">Dezember</option>
+                    </select>
+                  </div>
+                  <!-- Jahr -->
+                  <div>
+                    <select
+                      v-model="formData.pickupDateYear"
+                      @change="updatePickupDate"
+                      class="w-full px-2 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white text-gray-900 text-sm"
+                    >
+                      <option value="">Jahr</option>
+                      <option v-for="year in getYearOptions" :key="year" :value="String(year)">
+                        {{ year }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <p v-if="errors.pickupDate" class="text-red-500 text-sm mt-2">{{ errors.pickupDate }}</p>
+              </div>
+              <div class="form-group w-full">
                 <label class="form-label block text-sm font-semibold text-gray-700 mb-2">
                   Bevorzugte Uhrzeit
                 </label>
                 <select
                   v-model="formData.pickupTime"
-                  class="form-select w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  class="form-select w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white text-gray-900"
                 >
                   <option value="morning">Vormittags (8-12 Uhr)</option>
                   <option value="afternoon">Nachmittags (12-16 Uhr)</option>
@@ -281,7 +329,7 @@
             <textarea
               v-model="formData.comments"
               placeholder="Haben Sie zusätzliche Anmerkungen zu Ihrer Spende oder Fragen an uns?"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white text-gray-900"
               rows="4"
             ></textarea>
 
@@ -323,11 +371,12 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import BaseInput from '@/components/ui/BaseInput.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import { useDonationStore } from '@/stores/donationStore'
+import ValidationService from '@/services/validationService'
 
 const router = useRouter()
 const donationStore = useDonationStore()
@@ -346,10 +395,36 @@ const formData = reactive({
   quantity: '',
   crisisArea: '',
   pickupDate: '',
+  pickupDateDay: '',
+  pickupDateMonth: '',
+  pickupDateYear: '',
   pickupTime: 'morning',
   comments: '',
   terms: false
 })
+
+// Computed property for year options (tomorrow + 2 years)
+const getYearOptions = computed(() => {
+  const today = new Date()
+  const tomorrow = new Date(today)
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  const startYear = tomorrow.getFullYear()
+  const years = []
+  for (let i = 0; i <= 2; i++) {
+    years.push(startYear + i)
+  }
+  return years
+})
+
+// Update pickupDate from dropdown values
+const updatePickupDate = () => {
+  if (formData.pickupDateDay && formData.pickupDateMonth && formData.pickupDateYear) {
+    formData.pickupDate = `${formData.pickupDateYear}-${formData.pickupDateMonth}-${formData.pickupDateDay}`
+    validateField('pickupDate')
+  } else {
+    formData.pickupDate = ''
+  }
+}
 
 const errors = reactive({})
 
@@ -451,6 +526,14 @@ const validateField = (fieldName) => {
         errors.plz = 'Postleitzahl muss genau 5 Ziffern haben'
       } else if (!formData.plz.startsWith('69')) {
         errors.plz = 'Abholung nur im Gebiet 69xxx möglich'
+      } else {
+        // Prüfe ob Abholadresse in der Nähe der Geschäftsstelle liegt
+        const proximityResult = ValidationService.validatePickupProximity(formData.plz, '69488')
+        if (!proximityResult.isValid) {
+          errors.plz = proximityResult.error
+        } else {
+          errors.plz = null
+        }
       }
       break
 
@@ -552,6 +635,12 @@ const validate = () => {
     errors.plz = 'Postleitzahl muss genau 5 Ziffern haben'
   } else if (!formData.plz.startsWith('69')) {
     errors.plz = 'Abholung nur im Gebiet 69xxx möglich'
+  } else {
+    // Prüfe ob Abholadresse in der Nähe der Geschäftsstelle liegt
+    const proximityResult = ValidationService.validatePickupProximity(formData.plz, '69488')
+    if (!proximityResult.isValid) {
+      errors.plz = proximityResult.error
+    }
   }
 
   // Ort validieren

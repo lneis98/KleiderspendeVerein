@@ -19,9 +19,10 @@
         :required="required"
         :disabled="disabled"
         :readonly="readonly"
-        :min="min"
+        :min="type === 'date' ? getMinDate() : min"
         :max="max"
         :step="step"
+        :inputmode="type === 'date' ? 'numeric' : undefined"
         :autocomplete="autocomplete"
         :aria-invalid="!!error"
         :aria-describedby="error ? `${inputId}-error` : undefined"
@@ -121,7 +122,7 @@ const emit = defineEmits(['update:modelValue', 'blur', 'focus']);
 const inputId = useId();
 
 const inputClasses = computed(() => {
-  const base = 'block w-full px-3 py-2 border rounded-lg shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed';
+  const base = 'block w-full px-3 py-3 border rounded-lg shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed bg-white text-gray-900 text-base';
   const state = props.error 
     ? 'border-red-300 text-red-900 placeholder-red-300' 
     : 'border-gray-300 text-gray-900 placeholder-gray-400';
@@ -139,5 +140,11 @@ const handleBlur = (event) => {
 
 const handleFocus = (event) => {
   emit('focus', event);
+};
+
+const getMinDate = () => {
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  return tomorrow.toISOString().split('T')[0];
 };
 </script>

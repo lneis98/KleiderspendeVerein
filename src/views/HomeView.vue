@@ -30,7 +30,7 @@
         <header class="section-header">
           <h2 id="options-title" class="section-title">So funktioniert Ihre Spende</h2>
           <p class="section-description">
-            Wählen Sie aus drei einfachen Möglichkeiten, wie Sie Kleidung spenden möchten
+            Wählen Sie aus zwei einfachen Möglichkeiten, wie Sie Kleidung spenden möchten
           </p>
         </header>
         <div class="options-grid">
@@ -264,6 +264,8 @@ const router = useRouter()
   overflow: hidden;
   border: 1px solid rgba(139, 92, 246, 0.1);
 }
+
+/* ===== MOBILE-FIRST STYLES (Default for all screens) ===== */
 
 .hero-grid {
   display: grid;
@@ -502,62 +504,26 @@ const router = useRouter()
 .stat-item {
   text-align: center;
   padding: 1.5rem;
-    grid-template-columns: 1fr;
   border-radius: 0.75rem;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   transition: all 0.3s ease;
-  @media (min-width: 481px) {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      padding: 2.5rem 1.5rem;
-  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-      width: 220px;
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(139, 92, 246, 0.15);
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+}
 
-  @media (min-width: 769px) {
-    .hero-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      padding: 4rem;
-    }
-
-    .hero-content {
-      max-width: 600px;
-    }
-
-    .cta-buttons {
-      flex-direction: row;
-    }
-
-    .hero-image-wrapper {
-      padding: 2rem;
-      order: 0;
-    }
-
-    .hero-image {
-      width: 400px;
-    }
-
-    .options-grid {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-
-    .crisis-grid {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-
-    .stats-grid {
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-
-    .why-grid {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-  }
-  border-color: #c7d2fe;
+.stat-label {
+  display: block;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .why-icon {
@@ -579,45 +545,59 @@ const router = useRouter()
   line-height: 1.6;
 }
 
-@media (max-width: 768px) {
-  .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+/* ===== TABLET & UP (min-width: 768px / Tailwind md) ===== */
+@media (min-width: 768px) {
+  .stat-item {
     padding: 2.5rem 1.5rem;
-  }
-
-  .hero-image-wrapper {
-    order: -1;
-    padding: 0.5rem;
-  }
-
-  .hero-image {
-    width: 220px;
-  }
-
-  .hero-content {
-    max-width: 100%;
-  }
-
-  .cta-buttons {
-    flex-direction: column;
-  }
-
-  .options-grid,
-  .crisis-grid,
-  .stats-grid,
-  .why-grid {
-    grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 480px) {
+/* ===== DESKTOP & UP (min-width: 768px / Tailwind md) ===== */
+@media (min-width: 768px) {
   .hero-grid {
-    padding: 2rem 1.25rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding: 4rem;
+  }
+
+  .hero-content {
+    max-width: 600px;
+  }
+
+  .hero-image-wrapper {
+    padding: 2rem;
+    order: 0;
   }
 
   .hero-image {
-    width: 180px;
+    width: 400px;
+  }
+
+  .cta-buttons {
+    flex-direction: row;
+  }
+
+  .options-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .crisis-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .why-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 }
 </style>

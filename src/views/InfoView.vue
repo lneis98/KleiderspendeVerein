@@ -570,8 +570,8 @@
   margin-bottom: 0;
 }
 
-/* Responsive */
-@media (min-width: 769px) {
+/* Responsive (min-width: 768px / Tailwind md) */
+@media (min-width: 768px) {
   .hero-content {
     grid-template-columns: 1fr 1fr;
   }

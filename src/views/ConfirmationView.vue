@@ -76,8 +76,8 @@
                 <span class="detail-label text-gray-600 font-medium">Uhrzeit:</span>
                 <span class="detail-value text-gray-900 font-semibold">{{ formatTime(donationData.pickupTime) }}</span>
               </div>
-              <div class="detail-row">
-                <span class="detail-label text-gray-600 font-medium block mb-1">Ort:</span>
+              <div class="detail-row flex justify-between">
+                <span class="detail-label text-gray-600 font-medium">Ort:</span>
                 <span class="detail-value text-gray-900 font-semibold">{{ locationText }}</span>
               </div>
             </div>

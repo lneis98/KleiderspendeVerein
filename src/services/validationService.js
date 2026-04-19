@@ -106,9 +106,48 @@ class ValidationService {
     }
     
     if (!CONFIG.PATTERNS.ZIP_CODE.test(value)) {
-      return { isValid: false, error: 'Ungültige Postleitzahl' };
+      return { isValid: false, error: 'Postleitzahl muss 5 Ziffern enthalten' };
+    }
+
+    // Kritisch: Erste beiden Ziffern müssen 69 sein (Birkenau-Region)
+    const prefix = value.substring(0, 2);
+    if (prefix !== '69') {
+      return { 
+        isValid: false, 
+        error: 'Postleitzahl muss mit 69 beginnen (Sie liegen in der Birkenau-Region)' 
+      };
     }
     
+    return { isValid: true, error: null };
+  }
+
+  /**
+   * Validate that pickup address is near the business location
+   * Checks if the first two digits of the pickup address PLZ match the business location PLZ
+   * @param {string} pickupZip - Pickup address postal code
+   * @param {string} businessZip - Business location postal code (default: 69488 Birkenau)
+   * @returns {Object} - { isValid: boolean, error: string }
+   */
+  static validatePickupProximity(pickupZip, businessZip = '69488') {
+    if (!pickupZip || pickupZip.trim().length === 0) {
+      return { isValid: false, error: 'Abholadresse PLZ ist erforderlich' };
+    }
+
+    // Extract first two digits (postal area prefix)
+    const pickupPrefix = pickupZip.substring(0, 2);
+    const businessPrefix = businessZip.substring(0, 2);
+
+    // Check if pickup address is in the same postal area as the business location
+    if (pickupPrefix !== businessPrefix) {
+      return {
+        isValid: false,
+        error: `Bei der Abholadresse ist zu prüfen, ob sie in der Nähe der Geschäftsstelle liegt. 
+                Die ersten beiden Postleitzahlen müssen identisch sein. 
+                Geschäftsstelle: ${businessZip} (${businessPrefix}xxx), 
+                Ihre Adresse: ${pickupZip} (${pickupPrefix}xxx)`
+      };
+    }
+
     return { isValid: true, error: null };
   }
 
